@@ -14,7 +14,9 @@ const INITIAL_STATE = { timelines: [], nextPage: 0 };
 const reducer = createReducer(INITIAL_STATE, {
   [ADD]: (state, action) => state.timelines.push(action.timeline),
   [REMOVE]: (state, action) =>
-    (state.timelines = state.timelines.push(action.timeline)),
+    (state.timelines = state.timelines.filter(
+      timeline => timeline.id !== action.timeline.id
+    )),
   [EDIT]: (state, action) => {
     const index = state.timelines.findIndex(
       timeline => timeline.id === action.timeline.id
